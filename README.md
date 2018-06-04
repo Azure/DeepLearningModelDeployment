@@ -47,8 +47,8 @@ With the completion of the previous task, we introduce the steps of deploying an
 ## Getting Started
 Source code and full documentation are available in below notebooks. You are suggested to use these two notebooks in a sequential order. 
 
-- [Keras\\_TF\\_CNN_DeployModel.ipynb](Keras_TF_CNN_DeployModel.ipynb)
-- [Keras\\_TF_CNN\\_DeployModel\\_IoTEdge.ipynb](Keras_TF_CNN_DeployModel_IoTEdge.ipynb)
+- [Keras_TF_CNN_DeployModel.ipynb](Keras_TF_CNN_DeployModel.ipynb)
+- [Keras_TF_CNN_DeployModel_IoTEdge.ipynb](Keras_TF_CNN_DeployModel_IoTEdge.ipynb)
 
 # Contributing
 
