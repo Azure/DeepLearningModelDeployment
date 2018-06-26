@@ -17,7 +17,7 @@ Comparing with this previous [ACS deployment tutorial](https://github.com/Azure/
 Specifically, the major steps taken for deploying a Keras model is shown in following diagram. First of all, we need to get the trained model, scoring script, and conda dependency file ready in a local directory. Secondly, we provision necessary Azure resources such as a model management account, and the Kubernets cluster on which the model will model will be deployed. Lastly, we deploy the web service.
 
 <p align="center">
-<img src="imgs/kubernetescluster.PNG" alt="logo" width="90%"/>
+<img src="imgs/kubernetescluster.png" alt="logo" width="90%"/>
 </p>
 
 ## Model Deployment on Azure IoT Edge
