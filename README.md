@@ -1,25 +1,23 @@
 ### Authors: Yan Zhang and Ilia Karmanov
 
-# Deploying Deep Learning Models on Azure Container Service and on Azure IoT Edge
+# Deploying Deep Learning Models on Kubernetes Cluster and on Azure IoT Edge
 
-It is often a non-trivial task to deploy machine learning (ML) models. In this post, we show two types of model deployments: model deployment on Azure Container Service (ACS); and model deployment on Azure IoT Edge. 
+It is often a non-trivial task to deploy machine learning (ML) models. In this post, we show two types of model deployments: model deployment on a Kubernetes cluster; and model deployment on Azure IoT Edge.
 
-
-In our [previous work](https://github.com/ilkarman/DeepLearningFrameworks), we aim to create a Rosetta stone of deep learning (DL) frameworks by using common code for several different network structures. Taking one of these network structures as an example, we show how to deploy a trained Keras (tensorflow) CNN model. The objective of this multi-class classification problem is to perform object recognition in images on [CIFAR-10](https://www.kaggle.com/c/cifar-10) data set. The same model deployment approaches are also applicable to other ML models, not just DL.
-
+In this [previous work](https://github.com/ilkarman/DeepLearningFrameworks), we aim to create a Rosetta stone of deep learning (DL) frameworks by using common code for several different network structures. Taking one of these network structures as an example, we show how to deploy a trained Keras (tensorflow) CNN model. The objective of this multi-class classification problem is to perform object recognition in images on [CIFAR-10 data set](https://www.kaggle.com/c/cifar-10). The same model deployment approaches are also applicable to other ML models, not just DL.
 
 
-## Model Deployment on ACS 
+## Model Deployment on Kubernetes Cluster
 
-We deploy the model on Azure Container Service (ACS) as a web service via Azure CLI [Machine Learning Model Management]( https://docs.microsoft.com/en-us/azure/machine-learning/preview/model-management-overview). 
+We deploy the model on a Kubernetes cluster as a web service via [Machine Learning CLI](https://docs.microsoft.com/en-us/azure/machine-learning/service/overview-what-is-azure-ml). 
 
-Comparing with the previous [ACS deployment tutorial](https://github.com/Azure/ACS-Deployment-Tutorial), this approach simplifies the model deployment process by using a set of model management commands. With this model management tool, it becomes straightforward to take the containerized approach - Docker container, to overcome the dependency problems for ML model deployment. It makes convenient to initialize your Azure machine learning environment with a storage account, ACR registry, App Insights service, and other Azure resources by executing very few CLI commands. You can also easily scale ACS Kubernetes cluster, as introduced in the blog post [Scaling Azure Container Service Clusters](https://blogs.technet.microsoft.com/machinelearning/2018/03/20/scaling-azure-container-service-cluster/).
+Comparing with this previous [ACS deployment tutorial](https://github.com/Azure/ACS-Deployment-Tutorial), this approach simplifies the model deployment process by using a set of Azure ML CLI commands. With this tool, it becomes straightforward to take the containerized approach - Docker container, to overcome the dependency problems for ML model deployment. It makes it convenient to initialize your Azure machine learning environment with a storage account, ACR registry, App Insights service, and other Azure resources by executing very few CLI commands and deploy the model to the cluster. Source code and full documentation are linked below.
 
 
 Specifically, the major steps taken for deploying a Keras model is shown in following diagram. First of all, we need to get the trained model, scoring script, and conda dependency file ready in a local directory. Secondly, we provision necessary Azure resources such as a model management account, and the Kubernets cluster on which the model will model will be deployed. Lastly, we deploy the web service.
 
 <p align="center">
-<img src="imgs/diagram1.PNG" alt="logo" width="90%"/>
+<img src="imgs/kubernetescluster.PNG" alt="logo" width="90%"/>
 </p>
 
 ## Model Deployment on Azure IoT Edge
@@ -28,7 +26,7 @@ With the completion of the previous task, we introduce how to deploy an ML modul
 
 Azure IoT Edge is an Internet of Things (IoT) service that builds on top of Azure IoT Hub. It is a hybrid solution combining the benefits of the two scenarios: *IoT in the Cloud* and *IoT on the Edge*. This service is meant for customers who want to analyze data on devices, a.k.a. "at the edge", instead of in the cloud. By moving parts of your workload to the edge, your devices can spend less time sending messages to the cloud and react more quickly to changes in status. On the other hand, Azure IoT Hub provides centralized way to manage Azure IoT Edge devices, and make it easy to train ML models in the Cloud and deploy the trained models on the Edge devices.  
 
-In this example, we deploy a trained Keras (tensorflow) CNN model to the edge device. When the image data is generated from a particular process pipeline and fed into the prediction engine on the edge device, the deployed model is able to make predictions right on the edge device without accessing to the cloud. Following diagram shows the major components of an Azure IoT edge device.
+In this example, we deploy a trained Keras (tensorflow) CNN model to the edge device. When the image data is generated from a process pipeline and fed into the edge device, the deployed model can make predictions right on the edge device without accessing to the cloud. Following diagram shows the major components of an Azure IoT edge device. Source code and full documentation are linked below.
 
 <p align="center">
 <img src="imgs/azureiotedgeruntime.png" alt="logo" width="90%"/>
